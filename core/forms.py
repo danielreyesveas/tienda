@@ -3,10 +3,8 @@ from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
 PAYMENT_CHOICES = (
-    ('C', 'Credit Card'),
-    ('D', 'Debit Card'),
     ('P', 'PayPal'),
-    ('S', 'Stripe')
+    ('S', 'Credit Card')
 )
 
 

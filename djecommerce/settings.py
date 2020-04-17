@@ -84,7 +84,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'reciclatusanimales@gmail.com'
 EMAIL_HOST_PASSWORD = 'cyhnbolcznswholo'
 
-STRIPE_SECRET_KEY = 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
+STRIPE_SECRET_KEY = 'sk_test_T2jhyiCUhTaI97whdt1aKmyD00HzQNziPJ'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_QCkEZcJPHDIJOJJaxHTPv8Hc00OAAyE8vo'
 
 # CRISPY FORMS
 
