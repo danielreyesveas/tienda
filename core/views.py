@@ -21,19 +21,26 @@ def create_ref_code():
 
 
 class HomeView(ListView):
-    def get(self, *args, **kwargs):
-        print(*args)
-        items = Item.objects.all()
-        carrousel = Carrousel.objects.all()
-        categories = Category.objects.all()
+    template_name = 'home.html'
 
-        context = {
-            'items': items,
-            'carrousel': carrousel,
-            'categories': categories
-        }
+    def get_context_data(self, *args, **kwargs):
+        print(*args)
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.filter(
+            active=True).order_by('name')
+        context['carrousel'] = Carrousel.objects.filter(
+            active=True).order_by('order')
+        context['slug'] = self.request.GET.get('slug', None)
+
         paginate_by = 8
-        return render(self.request, "home.html", context)
+        print(self.request.GET.get('slug', None))
+        return context
+
+    def get_queryset(self):
+        category_slug = self.request.GET.get('slug', None)
+        if category_slug:
+            return Item.objects.filter(category__slug=category_slug).order_by("title")
+        return Item.objects.order_by("title")
 
 
 class PaymentView(View):

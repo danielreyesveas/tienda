@@ -26,22 +26,15 @@
               <strong>{{ item.title }}</strong>
             </h1>
 
-            <p>
-              <strong>Best & free guide of responsive web design</strong>
+            <p class="col-10 offset-1 mb-4 d-none d-md-block">
+              <strong>{{ item.description | default_if_none:""}}</strong>
             </p>
 
-            <p class="mb-4 d-none d-md-block">
-              <strong>The most comprehensive tutorial for the Bootstrap 4. Loved by over 500 000
-                users. Video and
-                written versions
-                available. Create your own, stunning website.</strong>
-            </p>
-
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/"
-              class="btn btn-outline-white btn-lg">Start
-              free tutorial
-              <i class="fas fa-graduation-cap ml-2"></i>
+            {% if item.link %}
+            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white">
+              <b>{% if item.link %}{{ item.link_title }}{% else %}{{ item.link }}{% endif %}</b>
             </a>
+            {% endif %}
           </div>
 
         </div>
@@ -88,14 +81,14 @@
 
         <ul class="navbar-nav mr-auto">
 
-          <li class="nav-item active">
-            <a class="nav-link" href="#">All
+          <li class="nav-item{% if slug is None %} active{% endif %}">
+            <a class="nav-link" href="{% url 'core:home' %}">All
               <span class="sr-only">(current)</span>
             </a>
           </li>
           {% for item in categories %}
-          <li class="nav-item">
-            <a class="nav-link" href="#">{{ item.name }}</a>
+          <li class="nav-item{% ifequal item.slug slug %} active{% endifequal %}">
+            <a class="nav-link" href="{% url 'core:home' %}?slug={{ item.slug }}">{{ item.name }}</a>
           </li>
           {% endfor %}
 
@@ -120,7 +113,7 @@
     <section class="text-center mb-4">
 
       <div class="row wow fadeIn">
-        {% for item in items %}
+        {% for item in item_list %}
 
         <div class="col-lg-3 col-md-6 mb-4">
 

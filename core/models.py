@@ -28,6 +28,7 @@ class UserProfile(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    slug = models.SlugField()
     description = models.CharField(max_length=1000, blank=True, null=True)
     active = models.BooleanField(default=True)
 
@@ -40,6 +41,7 @@ class Category(models.Model):
 
 class Item(models.Model):
     title = models.CharField(max_length=100)
+    subtitle = models.CharField(max_length=100)
     price = models.FloatField()
     discount_price = models.FloatField(blank=True, null=True)
     category = models.ForeignKey(
@@ -168,7 +170,9 @@ class Carrousel(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
     description = models.CharField(max_length=1000, null=True, blank=True)
     link = models.CharField(max_length=200, null=True, blank=True)
+    link_title = models.CharField(max_length=100, null=True, blank=True)
     active = models.BooleanField(default=True)
+    order = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.title
