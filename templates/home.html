@@ -31,7 +31,7 @@
             </p>
 
             {% if item.link %}
-            <a target="_blank" href="https://mdbootstrap.com/education/bootstrap/" class="btn btn-outline-white">
+            <a target="_blank" href="{{ item.link }}" class="btn btn-outline-white">
               <b>{% if item.link %}{{ item.link_title }}{% else %}{{ item.link }}{% endif %}</b>
             </a>
             {% endif %}
