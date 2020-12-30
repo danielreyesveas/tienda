@@ -1,7 +1,0 @@
-#!C:\Curso Django\django_project_boilerplate\Scripts\python.exe
-
-import warnings
-warnings.simplefilter('default', DeprecationWarning)
-
-from logilab.common.pytest import run
-run()
